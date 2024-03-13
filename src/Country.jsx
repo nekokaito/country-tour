@@ -1,6 +1,7 @@
 import { useState } from "react";
+import './CSS/Country.css';
 
-const Country = ({country}) => {
+const Country = ({country, visitedCountryList}) => {
     const {name, flags, population, area} = country;
     const myStyle = {
     border: '2px solid skyblue',
@@ -14,12 +15,14 @@ const Country = ({country}) => {
     }
     
     return (
-        <div style={myStyle}>
+        <div style={myStyle} className={`${visited?'visited':'not-visited'}`}>
             <p>Name: {name?.common}</p>
             <img  src={flags.png} alt="" />
             <p>Population : {population}</p>
             <p>Area : {area}</p>
             <button onClick={clickMe}>{visited ? 'Visited': 'Visit'}</button>
+            <br></br>
+            <button onClick={()=>visitedCountryList(country)}>Mark as Visited</button>
             <br></br>
             <small>
                {
